@@ -45,6 +45,13 @@ public class SingleClickHandlingTest {
 			//Add mozilla specific driver and initialize the driver
 		}
 		
+		driver.manage().window().maximize();
+		driver.manage().deleteAllCookies();
+		
+		driver.manage().timeouts().pageLoadTimeout(15, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+		
+		
 		driver.get(property.getProperty("usermgmtAppURL")); 
 	}
 	
