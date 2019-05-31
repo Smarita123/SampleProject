@@ -10,7 +10,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-
+import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
@@ -19,7 +19,7 @@ import org.testng.annotations.Test;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-public class SingleClickHandlingTest {
+public class HTMLUnitDriverTest {
 
 	
 	WebDriver driver;
@@ -31,26 +31,40 @@ public class SingleClickHandlingTest {
 	 */
 	@BeforeTest(enabled=true)
 	public void setup() throws IOException {
-		InputStream input=SingleClickHandlingTest.class.getClassLoader().getResourceAsStream("testData.properties");
+		InputStream input=HTMLUnitDriverTest.class.getClassLoader().getResourceAsStream("testData.properties");
 		Properties property=new Properties();
 		property.load(input);
 		
-		if("chrome".equalsIgnoreCase(property.getProperty("activeBrowser"))) {
 		
+		if("chrome".equalsIgnoreCase(property.getProperty("activeBrowser"))) {
+						
 			WebDriverManager.chromedriver().version(property.getProperty("driverVersion")).version("74.0").setup();
 			driver=new ChromeDriver(); 
+			//***Browser specific **
+			driver.manage().window().maximize();
+			driver.manage().deleteAllCookies();
+			driver.manage().timeouts().pageLoadTimeout(15, TimeUnit.SECONDS);
+			driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
 			//driver=new HtmlUnitDriver();
 		
 		} else if("firefox".equalsIgnoreCase(property.getProperty("activeBrowser"))) {
 			//Add mozilla specific driver and initialize the driver
+			
+			//***Browser specific **
+			driver.manage().window().maximize();
+			driver.manage().deleteAllCookies();
+			driver.manage().timeouts().pageLoadTimeout(15, TimeUnit.SECONDS);
+			driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
 		}
 		
-		driver.manage().window().maximize();
-		driver.manage().deleteAllCookies();
-		
-		driver.manage().timeouts().pageLoadTimeout(15, TimeUnit.SECONDS);
-		driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
-		
+		else if("HTMLUnitDriver".equalsIgnoreCase(property.getProperty("activeBrowser"))) {
+			//Add HTMLUnitDriver and initialize the driver
+			
+			driver=new HtmlUnitDriver();
+			((HtmlUnitDriver)driver).setJavascriptEnabled(true);
+			//No need of Window maximise and timeout as no window will be opened
+			
+		}
 		
 		driver.get(property.getProperty("usermgmtAppURL")); 
 	}
@@ -62,6 +76,7 @@ public class SingleClickHandlingTest {
 	 */
 	@Test(enabled=true)
 	public void testSingleClickHandling() throws InterruptedException {
+		System.out.println("Inside testSingleClickHandling()");
 		driver.findElement(By.name("name")).sendKeys("Lalatendu");
 		 driver.findElement(By.xpath("//button[text()='Click here to get profession']")).click();
 		WebElement webelement = driver.findElement(By.id("profession"));
@@ -71,6 +86,7 @@ public class SingleClickHandlingTest {
 	
 	@Test(enabled=true)
 	public void testSingleClickHandlingSmarita() throws InterruptedException {
+		System.out.println("Inside testSingleClickHandlingSmarita()");
 		driver.findElement(By.name("name")).clear();
 		driver.findElement(By.name("name")).sendKeys("Smarita");
 		 driver.findElement(By.xpath("//button[text()='Click here to get profession']")).click();
@@ -80,6 +96,7 @@ public class SingleClickHandlingTest {
 	}
 	@Test(enabled=true)
 	public void testSingleClickHandlingNull() throws InterruptedException {
+		System.out.println("Inside testSingleClickHandlingNull()");
 		driver.findElement(By.name("name")).clear();
 		driver.findElement(By.name("name")).sendKeys("");
 		 driver.findElement(By.xpath("//button[text()='Click here to get profession']")).click();
@@ -89,11 +106,14 @@ public class SingleClickHandlingTest {
 	}
 	@Test(enabled=true)
 	public void testSingleClickHandlingUnknown() throws InterruptedException {
+		System.out.println("Inside testSingleClickHandlingUnknown()");
 		driver.findElement(By.name("name")).clear();
 		driver.findElement(By.name("name")).sendKeys("XYZ");
-		 driver.findElement(By.xpath("//button[text()='Click here to get profession']")).click();
+		//System.out.println("***name= "+driver.findElement(By.xpath("//input[@name='name']")).getAttribute("value"));
+		driver.findElement(By.xpath("//button[text()='Click here to get profession']")).click();
 		WebElement webelement = driver.findElement(By.id("profession"));
 		String profession = webelement.getAttribute("value");
+		System.out.println("***Profession= "+profession);
 	    Assert.assertEquals("NA",profession);
 	}
 	/**

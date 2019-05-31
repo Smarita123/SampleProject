@@ -1,4 +1,4 @@
-package com.mvn.Sample1;
+package selenium.tutorial.studies;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -17,7 +17,7 @@ public class SingleClickNVerifyTest {
 	@Test
 	public void loadBrowser() throws IOException {
 		
-		InputStream input=SampleTest1.class.getClassLoader().getResourceAsStream("testData.properties");
+		InputStream input=SingleClickNVerifyTest.class.getClassLoader().getResourceAsStream("testData.properties");
 		Properties property=new Properties();
 		property.load(input);
 
