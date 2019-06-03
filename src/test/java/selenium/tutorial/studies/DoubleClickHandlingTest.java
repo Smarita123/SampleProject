@@ -33,15 +33,16 @@ public class DoubleClickHandlingTest {
 			
 			WebDriverManager.chromedriver().version(property.getProperty("chromeDriverVersion")).setup();
 			driver = new ChromeDriver();
-			driver.manage().window().maximize();	
+			
 		}
 		else if ("firefox".equalsIgnoreCase(property.getProperty("activeBrowser"))) {
 			
 			WebDriverManager.firefoxdriver().version(property.getProperty("firefoxDriverVersion")).setup();
 			driver = new ChromeDriver();
-			driver.manage().window().maximize();
-			
+						
 		}
+		driver.manage().window().maximize();
+		driver.manage().deleteAllCookies();
 		driver.get(property.getProperty("usermgmtAppURL")); 
 	}
 	
