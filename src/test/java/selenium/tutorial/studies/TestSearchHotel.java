@@ -11,6 +11,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
@@ -28,7 +29,7 @@ public class TestSearchHotel {
 		if ("chrome".equalsIgnoreCase(property.getProperty("activeBrowser"))) {
 			driver= new ChromeDriver();
 		}
-		
+		driver.manage().deleteAllCookies();
 		driver.get("https://www.spicejet.com");
 		driver.manage().window().maximize();
 	}
@@ -45,10 +46,12 @@ public class TestSearchHotel {
 		driver.findElement(By.xpath("//input[@type='submit' and @name='ctl00$mainContent$btn_FindFlights']")).submit();
 		driver.manage().timeouts().implicitlyWait(90,TimeUnit.SECONDS);
 		Assert.assertEquals(driver.findElement(By.xpath("//input[@id='txtHotelCity']")).getAttribute("value"),"Mumbai");
-		Assert.assertEquals(driver.findElement(By.xpath("//label[@class='admin-text ng-binding']")).getText(),"1 Guest / 1 Room ");
+		Assert.assertEquals(driver.findElement(By.xpath("//label[@class='admin-text ng-binding']")).getText(),"1 Guest / 1 Room ");	
 
-		
-
+	}
+	@AfterTest(enabled=true)
+	public void testTearDown() {
+	   driver.close();
 	}
 
 }

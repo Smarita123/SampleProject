@@ -11,6 +11,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 import org.openqa.selenium.interactions.Actions;
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
@@ -31,18 +32,14 @@ public class HandlingAlerts {
 		
 		if("chrome".equals(property.getProperty("activeBrowser"))) {
 			driver=new ChromeDriver();
-			driver.manage().window().maximize();
-		
+	
 		}
 		if("firefox".equals(property.getProperty("activeBrowser"))) {
 			driver=new FirefoxDriver();
-			driver.manage().window().maximize();
-		}
-	
-		if("HTMLUnitDriver".equalsIgnoreCase(property.getProperty("activeBrowser"))) {
-			driver=new HtmlUnitDriver();
-			((HtmlUnitDriver)driver).setJavascriptEnabled(true);
-		}
+
+		}		
+		driver.manage().window().maximize();
+		driver.manage().deleteAllCookies();
 		driver.get(property.getProperty("usermgmtAppURL"));
 	}
 	
@@ -86,6 +83,10 @@ public class HandlingAlerts {
 		Assert.assertEquals("Enter Name", str);
 		driver.switchTo().alert().sendKeys("Smarita");
 		driver.switchTo().alert().dismiss();	
+	}
+	@AfterTest(enabled=true)
+	public void testTearDown() {
+	   driver.close();
 	}
 
 }

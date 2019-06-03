@@ -36,28 +36,7 @@ public class HTMLUnitDriverTest {
 		property.load(input);
 		
 		
-		if("chrome".equalsIgnoreCase(property.getProperty("activeBrowser"))) {
-						
-			WebDriverManager.chromedriver().version(property.getProperty("driverVersion")).version("74.0").setup();
-			driver=new ChromeDriver(); 
-			//***Browser specific **
-			driver.manage().window().maximize();
-			driver.manage().deleteAllCookies();
-			driver.manage().timeouts().pageLoadTimeout(15, TimeUnit.SECONDS);
-			driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
-			//driver=new HtmlUnitDriver();
-		
-		} else if("firefox".equalsIgnoreCase(property.getProperty("activeBrowser"))) {
-			//Add mozilla specific driver and initialize the driver
-			
-			//***Browser specific **
-			driver.manage().window().maximize();
-			driver.manage().deleteAllCookies();
-			driver.manage().timeouts().pageLoadTimeout(15, TimeUnit.SECONDS);
-			driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
-		}
-		
-		else if("HTMLUnitDriver".equalsIgnoreCase(property.getProperty("activeBrowser"))) {
+	if("HTMLUnitDriver".equalsIgnoreCase(property.getProperty("activeBrowser"))) {
 			//Add HTMLUnitDriver and initialize the driver
 			
 			driver=new HtmlUnitDriver();
@@ -75,7 +54,7 @@ public class HTMLUnitDriverTest {
 	 * @throws InterruptedException 
 	 */
 	@Test(enabled=true)
-	public void testSingleClickHandling() throws InterruptedException {
+	public void testHtmlUnitDriverAsNameLalatendu() throws InterruptedException {
 		System.out.println("Inside testSingleClickHandling()");
 		driver.findElement(By.name("name")).sendKeys("Lalatendu");
 		 driver.findElement(By.xpath("//button[text()='Click here to get profession']")).click();
@@ -85,7 +64,7 @@ public class HTMLUnitDriverTest {
 	}
 	
 	@Test(enabled=true)
-	public void testSingleClickHandlingSmarita() throws InterruptedException {
+	public void testHtmlUnitDriverAsNameSmarita() throws InterruptedException {
 		System.out.println("Inside testSingleClickHandlingSmarita()");
 		driver.findElement(By.name("name")).clear();
 		driver.findElement(By.name("name")).sendKeys("Smarita");
@@ -95,7 +74,7 @@ public class HTMLUnitDriverTest {
 	    Assert.assertEquals("Quality Analyst",profession);
 	}
 	@Test(enabled=true)
-	public void testSingleClickHandlingNull() throws InterruptedException {
+	public void testHtmlUnitDriverAsNameNull() throws InterruptedException {
 		System.out.println("Inside testSingleClickHandlingNull()");
 		driver.findElement(By.name("name")).clear();
 		driver.findElement(By.name("name")).sendKeys("");
@@ -105,7 +84,7 @@ public class HTMLUnitDriverTest {
 	    Assert.assertEquals("NA",profession);
 	}
 	@Test(enabled=true)
-	public void testSingleClickHandlingUnknown() throws InterruptedException {
+	public void testHtmlUnitDriverAsNameUnknown() throws InterruptedException {
 		System.out.println("Inside testSingleClickHandlingUnknown()");
 		driver.findElement(By.name("name")).clear();
 		driver.findElement(By.name("name")).sendKeys("XYZ");

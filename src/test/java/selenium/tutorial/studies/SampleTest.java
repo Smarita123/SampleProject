@@ -15,6 +15,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.Test;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
@@ -47,7 +48,7 @@ public class SampleTest {
 			//System.setProperty("webdriver.chrome.driver", "D:\\Automation\\drivers\\chromedriver.exe");
 			driver=new FirefoxDriver();  
 		}   
-
+		driver.manage().deleteAllCookies();
 		driver.get(property.getProperty("url")); 
 		//driver.findElement(By.xpath("//input[@name='email']")).sendKeys("");
 		//System.out.println("*****email= "+driver.findElement(By.xpath("//input[@name='email']")).getAttribute("value"));
@@ -78,6 +79,11 @@ public class SampleTest {
 
 
 
+	}
+	
+	@AfterTest(enabled=true)
+	public void testTearDown() {
+	   driver.close();
 	}
 
 }

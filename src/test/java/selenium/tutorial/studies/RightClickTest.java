@@ -11,6 +11,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 import org.openqa.selenium.interactions.Actions;
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
@@ -29,14 +30,12 @@ public class RightClickTest {
 		
 		if("chrome".equals(property.getProperty("activeBrowser"))) {
 			driver=new ChromeDriver();
-			driver.manage().window().maximize();
-		
 		}
 		if("firefox".equals(property.getProperty("activeBrowser"))) {
-			driver=new FirefoxDriver();
-			driver.manage().window().maximize();
+			driver=new FirefoxDriver();	
 		}
-	
+		driver.manage().deleteAllCookies();
+		driver.manage().window().maximize();
 		driver.get(property.getProperty("googleurl"));
 	}
 	
@@ -54,6 +53,9 @@ public class RightClickTest {
 		String title= driver.getTitle();
 		Assert.assertEquals("Privacy Policy – Privacy & Terms – Google", title);
 	}
-	
+	@AfterTest(enabled=true)
+	public void testTearDown() {
+	   driver.close();
+	}
 
 }

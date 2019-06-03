@@ -8,6 +8,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
@@ -26,7 +27,7 @@ public class TestSubMenuAfterMouseHover {
 		if("chrome".equalsIgnoreCase(property.getProperty("activeBrowser"))) {
 			driver=new ChromeDriver();
 		}
-		
+		driver.manage().deleteAllCookies();
 		driver.get("https://www.spicejet.com");
 	}
 	@Test
@@ -35,6 +36,10 @@ public class TestSubMenuAfterMouseHover {
 		Actions action = new Actions(driver);
 		action.moveToElement(driver.findElement(By.linkText("Add-Ons"))).build().perform();
 		
+	}
+	@AfterTest(enabled=true)
+	public void testTearDown() {
+	   driver.close();
 	}
 
 }
