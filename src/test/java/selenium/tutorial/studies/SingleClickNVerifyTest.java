@@ -1,4 +1,4 @@
-package com.mvn.Sample1;
+package selenium.tutorial.studies;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -10,6 +10,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.Assert;
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.Test;
 
 public class SingleClickNVerifyTest {
@@ -17,7 +18,7 @@ public class SingleClickNVerifyTest {
 	@Test
 	public void loadBrowser() throws IOException {
 		
-		InputStream input=SampleTest1.class.getClassLoader().getResourceAsStream("testData.properties");
+		InputStream input=SingleClickNVerifyTest.class.getClassLoader().getResourceAsStream("testData.properties");
 		Properties property=new Properties();
 		property.load(input);
 
@@ -36,7 +37,8 @@ public class SingleClickNVerifyTest {
 			System.setProperty(property.getProperty("firefoxd0river"), property.getProperty("firefoxDriverLocation"));
 			//System.setProperty("webdriver.chrome.driver", "D:\\Automation\\drivers\\chromedriver.exe");
 			driver=new FirefoxDriver();  
-		}   
+		}  
+		driver.manage().deleteAllCookies();
 		//***Load page***
 		driver.get(property.getProperty("url")); 
 		
@@ -78,6 +80,11 @@ public class SingleClickNVerifyTest {
 					Assert.assertEquals(profession, "NA");
 					System.out.println("***Tested OK : Profession = Unknown");
 				}
+	}
+	
+	@AfterTest(enabled=true)
+	public void testTearDown() {
+	   driver.close();
 	}
 
 }
