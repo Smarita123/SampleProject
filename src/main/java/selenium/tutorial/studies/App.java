@@ -1,4 +1,4 @@
-package com.mvn.Sample1;
+package selenium.tutorial.studies;
 
 /**
  * Hello world!
