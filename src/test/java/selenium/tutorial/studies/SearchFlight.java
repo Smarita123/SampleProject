@@ -41,27 +41,27 @@ public class SearchFlight {
 	
 	@Test
 	public void searchFlightsTest() {
+		System.out.println("Inside Search Flight test");
 		
 		driver.findElement(By.id("ctl00_mainContent_rbtnl_Trip_1")).click();
-		//driver.findElement(By.id("ctl00_mainContent_rbtnl_Trip_1")).sendKeys(Keys.TAB);
-		
 		driver.manage().timeouts().implicitlyWait(90, TimeUnit.SECONDS);
+		
+		JavascriptExecutor js = (JavascriptExecutor)driver;
+		js.executeScript("document.getElementById('ctl00_mainContent_ddl_originStation1_CTXT').value='Amritsar (ATQ)';");
 				
-		//driver.findElement(By.xpath("//select[@id='ctl00_mainContent_ddl_originStation1']")).sendKeys("Chennai");
-		//Select originStation = new Select(driver.findElement(By.xpath("//select[@id='ctl00_mainContent_ddl_originStation1']")));
-		//originStation.selectByValue("MAA");
-		WebElement origin=driver.findElement(By.xpath("//input[@id='ctl00_mainContent_ddl_originStation1_CTXT']"));
-		//setStation(driver, origin, "Chennai (MAA)");
-		setStation(driver, origin, "MAA");
+		js.executeScript("document.getElementById('ctl00_mainContent_ddl_destinationStation1_CTXT').value='Bengaluru (BLR)';");
+		
+		//WebElement origin=driver.findElement(By.xpath("//input[@id='ctl00_mainContent_ddl_originStation1_CTXT']"));
+		//setStation(driver, origin, "Amritsar (ATQ)");
 		
 		//driver.findElement(By.xpath("//select[@id='ctl00_mainContent_ddl_destinationStation1']")).sendKeys("Gwalior");
 		//Select destinationStation = new Select(driver.findElement(By.xpath("//select[@id='ctl00_mainContent_ddl_destinationStation1']")));
 		//destinationStation.selectByValue("PNQ");
-		WebElement destination = driver.findElement(By.xpath("//input[@id='ctl00_mainContent_ddl_destinationStation1_CTXT']"));
+		//WebElement destination = driver.findElement(By.xpath("//input[@id='ControlGroupSearchView_AvailabilitySearchInputSearchViewdestinationStation1_CTXT"));
 		//setStation(driver, destination, "Gwalior (GWL)");
-		setStation(driver, destination, "GWL");
+		//setStation(driver, destination, "Bengaluru (BLR)");
 		
-		driver.findElement(By.id("ctl00_mainContent_chk_friendsandfamily")).click();
+		//driver.findElement(By.id("ctl00_mainContent_chk_friendsandfamily")).click();
 		driver.findElement(By.id("ctl00_mainContent_btn_FindFlights")).submit();
 		
 	}
@@ -69,7 +69,7 @@ public class SearchFlight {
 	public void setStation(WebDriver driver, WebElement element, String station) {
 		JavascriptExecutor js = ((JavascriptExecutor)driver);
 		//js.executeScript("arguments[0].setAttribute('value','"+station+"');",element);
-		js.executeScript("arguments[0].setAttribute('selectedvalue','"+station+"');",element);
+		js.executeScript("arguments[0].setAttribute('value','"+station+"');",element);
 				
 		
 	}
