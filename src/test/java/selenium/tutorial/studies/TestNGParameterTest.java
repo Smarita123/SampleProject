@@ -23,10 +23,4 @@ public class TestNGParameterTest {
 		System.out.println("Inside testWipro browser name::"+ browsername);
 	}
 	
-	
-	public void testWipro1() {
-		System.out.println("Inside testWipro1");
-	}
-	
-
 }

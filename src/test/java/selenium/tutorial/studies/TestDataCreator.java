@@ -2,12 +2,12 @@ package selenium.tutorial.studies;
 
 import org.testng.annotations.DataProvider;
 
-public class TestDataProvider {
+public class TestDataCreator {
 	
-	@DataProvider(name="movieslist")
+	@DataProvider(name="searchYearWiseMovies")
 	public static Object[][] moviesTestData() {
 		  return new Object[][] {
-			  {"Harry Potter"},{"XMen"},{"Ironman"}
+			  {"2018 movies list"},{"2017 movies list"},{"2016 movies list"}
 		  };
 	}
 	

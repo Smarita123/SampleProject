@@ -3,7 +3,8 @@
   <parameter name="browser" value="mozilla"></parameter>
    <test name = "test1">
       <classes>
-         <class name = "selenium.tutorial.studies.TestNGSampleTest" />
+        <!--   <class name = "selenium.tutorial.studies.TestNGSampleTest" />-->
+         <class name = "selenium.tutorial.studies.SeleniumDataProviderTest" />
       </classes>
    </test>
 </suite>

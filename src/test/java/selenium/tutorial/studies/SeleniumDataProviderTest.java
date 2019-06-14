@@ -7,7 +7,7 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
-public class TestNGSingleParamProvider {
+public class SeleniumDataProviderTest {
 	
 WebDriver driver;
 	
@@ -16,9 +16,9 @@ WebDriver driver;
 		System.out.println("inside setup ::");
 	}
 	
-	@Test(dataProvider="movieslist" , dataProviderClass=TestDataProvider.class)
-	public void testWipro(String moviename) {
-		System.out.println("moie name printed as::"+ moviename);
+	@Test(dataProvider="searchYearWiseMovies" , dataProviderClass=TestDataCreator.class)
+	public void testSearchMooviesByYear(String moviesReleasedInYear) {
+		System.out.println("Search movies ->"+ moviesReleasedInYear);
 	}
 	
 }
