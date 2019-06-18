@@ -71,7 +71,7 @@ public class SeleniumTestNGParametersTest {
 		Assert.assertEquals(driver.findElement(By.xpath("//label[@class='admin-text ng-binding']")).getText(),"1 Guest / 1 Room");
 
 	}
-	@Test (priority=2)
+	//@Test (priority=2)
 	public void searchHotelsWithCityandChild() {
 
 		//WebElement destination = driver.findElement(By.xpath("//input[@id='ctl00_mainContent_txtOriginStation1_MST' and @name='ctl00$mainContent$txtOriginStation1_MST']"));
@@ -101,9 +101,5 @@ public class SeleniumTestNGParametersTest {
 
 	}
 
-	@AfterTest(enabled=false)
-	public void testTearDown() {
-		driver.close();
-	}
-
+	
 }

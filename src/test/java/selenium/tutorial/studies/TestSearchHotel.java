@@ -33,9 +33,7 @@ public class TestSearchHotel {
 	public void setUp() throws IOException {
 		InputStream input= TestSearchHotel.class.getClassLoader().getResourceAsStream("testData.properties");
 		property= new Properties();
-		property.load(input);
-		
-		
+		property.load(input);				
 	}
 	
 	@BeforeMethod
@@ -53,10 +51,8 @@ public class TestSearchHotel {
 	}
 	
 	@AfterMethod
-	public void close(){
-		   
+	public void close(){	   
 		driver.quit();
-		
 	}
 	
 	
