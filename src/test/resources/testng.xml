@@ -1,13 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<suite name = "Suite1">
-  <parameter name="browser" value="mozilla"></parameter>
-    <parameter name="activeBrowser" value="chrome"></parameter>
-   <parameter name="chromeDriverVersion" value="74.0"></parameter>
-   <test name = "test1">
-      <classes>
-        <!--   <class name = "selenium.tutorial.studies.TestNGSampleTest" />-->
-         <!-- <class name = "selenium.tutorial.studies.SeleniumDataProviderTest" /> -->
-          <class name = "selenium.tutorial.studies.SeleniumTestNGParametersTest" />
-      </classes>
-   </test>
+<suite name="Suite1">
+
+	<parameter name="activeBrowser" value="chrome"></parameter>
+	<parameter name="chromeDriverVersion" value="74.0"></parameter>
+	<parameter name="browser" value="mozilla"></parameter>
+	<parameter name="mozillaDriverVersion" value="74.0"></parameter>
+
+	<test name="test1">
+		<classes>
+			<!-- <class name = "selenium.tutorial.studies.TestNGSampleTest" /> -->
+			<!-- <class name = "selenium.tutorial.studies.SeleniumDataProviderTest" 
+				/> -->
+			<class>
+				<!-- name="selenium.tutorial.studies.SeleniumTestNGParametersTest" /> -->
+			</class>
+			
+		</classes>
+	</test>
+
+	<test name="test2">
+
+		<classes>
+			<!-- <class name = "selenium.tutorial.studies.TestNGSampleTest" /> -->
+			<!-- <class name = "selenium.tutorial.studies.SeleniumDataProviderTest" 
+				/> -->
+			<class>
+				<!--name="selenium.tutorial.studies.SeleniumTestNGParametersMozilla" 
+					/> -->
+			</class>
+		</classes>
+	</test>
+
+	<test name="Data provider">
+		<classes>
+			<class
+				name="selenium.tutorial.studies.SearchMoviesUsingDataProvider" />
+		</classes>
+	</test>
 </suite>
