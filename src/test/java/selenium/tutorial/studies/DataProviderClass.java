@@ -10,5 +10,15 @@ public class DataProviderClass {
 			{"2018 movies list"}, {"2017 movies list"}, {"2016 movies list"}
 		};
 	}
+	
+	@DataProvider(name="login")
+	public static Object[][] credentialsTestData(){
+		return new Object[][] {
+			{"User", "Passwrd"}, 
+			{"Username", "Password"}, 
+			{"Username1", "Password1"}
+		};
+	}
+
 
 }

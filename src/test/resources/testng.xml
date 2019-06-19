@@ -9,12 +9,8 @@
 	<test name="test1">
 		<classes>
 			<!-- <class name = "selenium.tutorial.studies.TestNGSampleTest" /> -->
-			<!-- <class name = "selenium.tutorial.studies.SeleniumDataProviderTest" 
-				/> -->
-			<class>
-				<!-- name="selenium.tutorial.studies.SeleniumTestNGParametersTest" /> -->
-			</class>
-			
+			<!-- <class name = "selenium.tutorial.studies.SeleniumDataProviderTest" /> -->
+			<!-- <class name="selenium.tutorial.studies.SeleniumTestNGParametersTest" /> -->		
 		</classes>
 	</test>
 
@@ -22,19 +18,17 @@
 
 		<classes>
 			<!-- <class name = "selenium.tutorial.studies.TestNGSampleTest" /> -->
-			<!-- <class name = "selenium.tutorial.studies.SeleniumDataProviderTest" 
-				/> -->
-			<class>
-				<!--name="selenium.tutorial.studies.SeleniumTestNGParametersMozilla" 
-					/> -->
-			</class>
+			<!-- <class name = "selenium.tutorial.studies.SeleniumDataProviderTest" /> -->
+			<!--<class name="selenium.tutorial.studies.SeleniumTestNGParametersMozilla" /> -->		
 		</classes>
 	</test>
 
 	<test name="Data provider">
 		<classes>
-			<class
-				name="selenium.tutorial.studies.SearchMoviesUsingDataProvider" />
+			<!--<class name="selenium.tutorial.studies.SearchMoviesUsingDataProvider" />-->
+			<!--<class name="selenium.tutorial.studies.RediffLoginUsingDataProvider" />-->
+			<class name="selenium.tutorial.studies.ClassUsingTestNgDataProvider"/>
+			
 		</classes>
 	</test>
 </suite>
