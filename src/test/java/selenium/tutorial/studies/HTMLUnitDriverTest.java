@@ -17,6 +17,8 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
+import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
+
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class HTMLUnitDriverTest {
@@ -34,6 +36,7 @@ public class HTMLUnitDriverTest {
 		InputStream input=HTMLUnitDriverTest.class.getClassLoader().getResourceAsStream("testData.properties");
 		Properties property=new Properties();
 		property.load(input);
+		//ExtentHtmlReporter reporter = new ExtentHtmlReporter("./report/sampleReport-htmlUnitDriver.html");
 		
 		
 	if("HTMLUnitDriver".equalsIgnoreCase(property.getProperty("activeBrowser"))) {

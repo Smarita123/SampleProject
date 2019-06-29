@@ -20,6 +20,7 @@
 			<!-- <class name = "selenium.tutorial.studies.TestNGSampleTest" /> -->
 			<!-- <class name = "selenium.tutorial.studies.SeleniumDataProviderTest" /> -->
 			<!--<class name="selenium.tutorial.studies.SeleniumTestNGParametersMozilla" /> -->		
+			<!--<class name="selenium.tutorial.studies.GoogleUsingJavaScriptExecutor" />-->	
 		</classes>
 	</test>
 
@@ -27,7 +28,15 @@
 		<classes>
 			<!--<class name="selenium.tutorial.studies.SearchMoviesUsingDataProvider" />-->
 			<!--<class name="selenium.tutorial.studies.RediffLoginUsingDataProvider" />-->
-			<class name="selenium.tutorial.studies.ClassUsingTestNgDataProvider"/>
+			<!--<class name="selenium.tutorial.studies.ClassUsingTestNgDataProvider"/>-->
+			
+		</classes>
+	</test>
+		<test name="Extent Reports">
+		<classes>
+			<class name="selenium.tutorial.studies.ExtentReportTest" />
+			<!--<class name="selenium.tutorial.studies.HTMLUnitDriverTest" />-->
+
 			
 		</classes>
 	</test>

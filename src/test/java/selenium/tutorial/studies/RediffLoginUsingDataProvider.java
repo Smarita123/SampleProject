@@ -34,7 +34,7 @@ public class RediffLoginUsingDataProvider {
 		driver.manage().window().maximize();
 		driver.get("https://mail.rediff.com/cgi-bin/login.cgi");
 	}
-	@Test(dataProvider="login", dataProviderClass=DataProviderClass.class)
+	@Test(dataProvider="login", dataProviderClass=DataProviderClass.class, enabled=false)
 	public void rediffLogin(String username, String password) {
 		System.out.println("login Credentials***"+username +password);
 		driver.findElement(By.id("login1")).sendKeys(username);
@@ -43,6 +43,18 @@ public class RediffLoginUsingDataProvider {
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		Assert.assertEquals(driver.findElement(By.xpath("//*[@id=\"login\"]/div/div[1]")).getText(), "Wrong username and password combination.");
 	}
+	
+	@Test(dataProvider="TestDataFromExcel", dataProviderClass=DataProviderClass.class)
+	public void rediffLoginUsingDataFromExcel(String username, String password) {
+		System.out.println("rediffLoginUsingDataFromExcel");
+		System.out.println("login Credentials***"+username +password);
+		driver.findElement(By.id("login1")).sendKeys(username);
+		driver.findElement(By.id("password")).sendKeys(password);
+		driver.findElement(By.name("proceed")).submit();
+		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+		Assert.assertEquals(driver.findElement(By.xpath("//*[@id=\"login\"]/div/div[1]")).getText(), "Wrong username and password combination.");
+	}
+	
 	@AfterMethod
 	public void teardown() {
 		System.out.println("Inside teardown()");
