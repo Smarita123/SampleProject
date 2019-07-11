@@ -2,15 +2,17 @@
 <suite name="Suite1">
 
 	<parameter name="activeBrowser" value="chrome"></parameter>
-	<parameter name="chromeDriverVersion" value="74.0"></parameter>
+	<parameter name="chromeDriverVersion" value="75.0"></parameter>
 	<parameter name="browser" value="mozilla"></parameter>
 	<parameter name="mozillaDriverVersion" value="74.0"></parameter>
 
 	<test name="test1">
 		<classes>
 			<!-- <class name = "selenium.tutorial.studies.TestNGSampleTest" /> -->
-			<!-- <class name = "selenium.tutorial.studies.SeleniumDataProviderTest" /> -->
-			<!-- <class name="selenium.tutorial.studies.SeleniumTestNGParametersTest" /> -->		
+			<!-- <class name = "selenium.tutorial.studies.SeleniumDataProviderTest" 
+				/> -->
+			<!-- <class name="selenium.tutorial.studies.SeleniumTestNGParametersTest" 
+				/> -->
 		</classes>
 	</test>
 
@@ -18,26 +20,54 @@
 
 		<classes>
 			<!-- <class name = "selenium.tutorial.studies.TestNGSampleTest" /> -->
-			<!-- <class name = "selenium.tutorial.studies.SeleniumDataProviderTest" /> -->
-			<!--<class name="selenium.tutorial.studies.SeleniumTestNGParametersMozilla" /> -->		
-			<!--<class name="selenium.tutorial.studies.GoogleUsingJavaScriptExecutor" />-->	
+			<!-- <class name = "selenium.tutorial.studies.SeleniumDataProviderTest" 
+				/> -->
+			<!--<class name="selenium.tutorial.studies.SeleniumTestNGParametersMozilla" 
+				/> -->
+			<!--<class name="selenium.tutorial.studies.GoogleUsingJavaScriptExecutor" 
+				/> -->
 		</classes>
 	</test>
 
 	<test name="Data provider">
 		<classes>
-			<!--<class name="selenium.tutorial.studies.SearchMoviesUsingDataProvider" />-->
-			<!--<class name="selenium.tutorial.studies.RediffLoginUsingDataProvider" />-->
-			<!--<class name="selenium.tutorial.studies.ClassUsingTestNgDataProvider"/>-->
-			
+			<!--<class name="selenium.tutorial.studies.SearchMoviesUsingDataProvider" 
+				/> -->
+			<!--<class name="selenium.tutorial.studies.RediffLoginUsingDataProvider" 
+				/> -->
+			<!--<class name="selenium.tutorial.studies.ClassUsingTestNgDataProvider"/> -->
+
 		</classes>
 	</test>
-		<test name="Extent Reports">
+	<test name="Extent Reports">
+		<groups>
+			<run>
+				<include name="acceptanceTest" />
+				<include name="pre-test" />
+				<include name="run-all-methods" />
+			</run>
+		</groups>
 		<classes>
-			<class name="selenium.tutorial.studies.ExtentReportTest" />
+			<!-- <class name="selenium.tutorial.studies.ExtentReportTest" /> -->
+			<!-- <class name="selenium.tutorial.studies.GoogleUsingJavaScriptExecutor"/> -->
 			<!--<class name="selenium.tutorial.studies.HTMLUnitDriverTest" />-->
-
+			<class name="VivekSir_framwork.HF_Driver2" />
 			
+			<groups>
+				<methods>
+					<exclude name="testHtmlUnitDriverAsNameLalatendu"></exclude>
+				</methods>
+			</groups>
+		</classes>
+
+	</test>
+
+	<test name="Paymentz tests">
+		<classes>
+			<!--<class name="com.paymentz.ManualRebill" /> -->
+
+
+
 		</classes>
 	</test>
 </suite>
