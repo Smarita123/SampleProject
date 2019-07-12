@@ -45,8 +45,11 @@ public class HF_Driver2 {
 	    
 		xlPath = "D:\\Eclipse_Workspace\\SeleniumPractice\\src\\test\\resources\\Test_HF_Selenium.xls";
 	    //xlPath = "C:\\SLT_Oct_2015\\HF1.xls";
-	    xlRes_TS= "C:\\SLT_Oct_2015\\HF1_TS_Res";
-	    xlRes_TC= "C:\\SLT_Oct_2015\\HF1_TC_Res";
+	    //xlRes_TS= "C:\\SLT_Oct_2015\\HF1_TS_Res";
+	    //xlRes_TC= "C:\\SLT_Oct_2015\\HF1_TC_Res";
+	    xlRes_TS= "D:\\Eclipse_Workspace\\SeleniumPractice\\src\\test\\resources\\Results\\HF1_TS_Res";
+	    xlRes_TC= "D:\\Eclipse_Workspace\\SeleniumPractice\\src\\test\\resources\\Results\\HF1_TC_Res";
+	    
 	   // xlRes_TD= "C:\\SLT_Oct_2015\\HF1_TD_Res.xls";
 		xlTC = readXL(xlPath, "Test Cases");
 		xlTS = readXL(xlPath, "Test Steps");
@@ -91,7 +94,7 @@ public class HF_Driver2 {
 						System.out.println("TC ready for execution : " + xlTC[i][0]);
 						vTC_Res = "Pass"; // Assume to begin that TC is a pass
 						int stepNum = 0;
-						for (int j=1; j<xRows_TS; j++){
+						for (int j=1; j<xRows_TS; j++){	// test steps sheet
 							if (xlTC[i][0].equals(xlTS[j][0])){
 								stepNum++;
 								vKW = xlTS[j][3];// keyword  Enteremail		
@@ -106,7 +109,7 @@ public class HF_Driver2 {
 								System.out.println("IP1: " + vIP1);
 								System.out.println("IP2: " + vIP2);
 								try {
-									//executeKW(vKW, vIP1, vIP2);
+									executeKW(vKW, vIP1, vIP2);
 									if (vTS_Res.equals("Pass")){
 										vTS_Res = "Pass";
 									} else {
@@ -150,7 +153,7 @@ public class HF_Driver2 {
 	}
 	
 	public String getTestDataValue(String fIP, int fK){
-		System.out.println("fK value is " + fK);
+		System.out.println("fK value is " + fK);	//test data row number
 		switch (fIP){
 			case "vURL":
 				return xlTD[fK][2];
@@ -221,6 +224,7 @@ public class HF_Driver2 {
 			// O/P: -
 			WebDriverManager.chromedriver().version("74.0").setup();
 			driver = new ChromeDriver();
+			System.out.println("driver initialised");
 			
 			//driver = new FirefoxDriver();
 		    //driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
@@ -264,7 +268,7 @@ public class HF_Driver2 {
 			Thread.sleep(fMiliSeconds);
 			
 		}
-		
+		@AfterTest
 		public void closeBrowser(){
 			// Purpose: Close the browser
 			// I/P: 

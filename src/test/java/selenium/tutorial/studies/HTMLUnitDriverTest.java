@@ -13,17 +13,22 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
+import org.testng.SkipException;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Listeners;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
-import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
+//import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
+//@Test(groups= {"run-all-methods"})
+@Listeners(selenium.tutorial.studies.reports.ExtentReporterNG.class)
 public class HTMLUnitDriverTest {
 
-	
+
 	WebDriver driver;
 	/**
 	 * Will be executed before all methods annotated with @Test. 
@@ -31,62 +36,57 @@ public class HTMLUnitDriverTest {
 	 * Usually all initializing parameters like driver initialization and common weburl if being used in all testcase methods in the same class are defined here
 	 * @throws IOException
 	 */
-	@BeforeTest(enabled=true)
+	@BeforeTest(enabled=true, groups= {"pre-test"})
 	public void setup() throws IOException {
+		System.out.println("Inside setup()****");
 		InputStream input=HTMLUnitDriverTest.class.getClassLoader().getResourceAsStream("testData.properties");
 		Properties property=new Properties();
 		property.load(input);
 		//ExtentHtmlReporter reporter = new ExtentHtmlReporter("./report/sampleReport-htmlUnitDriver.html");
-		
-		
-	if("HTMLUnitDriver".equalsIgnoreCase(property.getProperty("activeBrowser"))) {
-			//Add HTMLUnitDriver and initialize the driver
-			
-			driver=new HtmlUnitDriver();
-			((HtmlUnitDriver)driver).setJavascriptEnabled(true);
-			//No need of Window maximise and timeout as no window will be opened
-			
-		}
-		
+
+		driver=new HtmlUnitDriver();
+		((HtmlUnitDriver)driver).setJavascriptEnabled(true);
+		//No need of Window maximise and timeout as no window will be opened
 		driver.get(property.getProperty("usermgmtAppURL")); 
 	}
-	
+
 	/**
 	 * Actual Testcase script for a particular scenario is written here.
 	 * We can create multiple methods annotated with @Test if there are multiple scenarios too be executed.
 	 * @throws InterruptedException 
 	 */
-	@Test(enabled=true)
+	@Test(groups= {"acceptanceTest"})
 	public void testHtmlUnitDriverAsNameLalatendu() throws InterruptedException {
 		System.out.println("Inside testSingleClickHandling()");
+		driver.findElement(By.name("name")).clear();
 		driver.findElement(By.name("name")).sendKeys("Lalatendu");
-		 driver.findElement(By.xpath("//button[text()='Click here to get profession']")).click();
+		driver.findElement(By.xpath("//button[text()='Click here to get profession']")).click();
 		WebElement webelement = driver.findElement(By.id("profession"));
 		String profession = webelement.getAttribute("value");
-	    Assert.assertEquals("Java Programmer",profession);
+		Assert.assertEquals("Java Programmer",profession);
 	}
-	
-	@Test(enabled=true)
+
+	@Test (groups= {"acceptanceTest"})
 	public void testHtmlUnitDriverAsNameSmarita() throws InterruptedException {
-		System.out.println("Inside testSingleClickHandlingSmarita()");
+		System.out.println("Inside testHtmlUnitDriverAsNameSmarita()");
 		driver.findElement(By.name("name")).clear();
 		driver.findElement(By.name("name")).sendKeys("Smarita");
-		 driver.findElement(By.xpath("//button[text()='Click here to get profession']")).click();
+		driver.findElement(By.xpath("//button[text()='Click here to get profession']")).click();
 		WebElement webelement = driver.findElement(By.id("profession"));
 		String profession = webelement.getAttribute("value");
-	    Assert.assertEquals("Quality Analyst",profession);
+		Assert.assertEquals("Quality Analyst",profession);
 	}
-	@Test(enabled=true)
+	@Test(groups= {"acceptanceTest"})
 	public void testHtmlUnitDriverAsNameNull() throws InterruptedException {
 		System.out.println("Inside testSingleClickHandlingNull()");
 		driver.findElement(By.name("name")).clear();
 		driver.findElement(By.name("name")).sendKeys("");
-		 driver.findElement(By.xpath("//button[text()='Click here to get profession']")).click();
+		driver.findElement(By.xpath("//button[text()='Click here to get profession']")).click();
 		WebElement webelement = driver.findElement(By.id("profession"));
 		String profession = webelement.getAttribute("value");
-	    Assert.assertEquals("NA",profession);
+		Assert.assertEquals("NA",profession);
 	}
-	@Test(enabled=true)
+	@Test(groups= {"acceptanceTest"})
 	public void testHtmlUnitDriverAsNameUnknown() throws InterruptedException {
 		System.out.println("Inside testSingleClickHandlingUnknown()");
 		driver.findElement(By.name("name")).clear();
@@ -96,7 +96,28 @@ public class HTMLUnitDriverTest {
 		WebElement webelement = driver.findElement(By.id("profession"));
 		String profession = webelement.getAttribute("value");
 		System.out.println("***Profession= "+profession);
-	    Assert.assertEquals("NA",profession);
+		Assert.assertEquals("NA",profession);
+	}
+	@Test(groups= {"acceptanceTest"})
+	public void testHtmlUnitDriverFailTest() throws InterruptedException {
+		System.out.println("Inside testSingleClickHandlingUnknown()");
+		driver.findElement(By.name("name")).clear();
+		driver.findElement(By.name("name")).sendKeys("XYZ");
+		//System.out.println("***name= "+driver.findElement(By.xpath("//input[@name='name']")).getAttribute("value"));
+		driver.findElement(By.xpath("//button[text()='Click here to get profession']")).click();
+		WebElement webelement = driver.findElement(By.id("profession"));
+		String profession = webelement.getAttribute("value");
+		System.out.println("***Profession= "+profession);
+		Assert.assertEquals("Profession-invalid",profession);
+	}
+	@Parameters({"activeBrowser", "chromeDriverVersion"})
+	@Test(groups= {"acceptanceTest"})
+	public void testSkipMethod(String browser, String chromeDriverVersion) throws InterruptedException {
+		System.out.println("Inside testSkipMethod()");
+		if ("chrome".equalsIgnoreCase(browser)) {
+			System.out.println("We dont need Browser parameters for browserless testing.....So skipping it");
+			throw new SkipException("Skipping this testcase");
+		}
 	}
 	/**
 	 * This method will be called after all testcase executions are over.
@@ -106,6 +127,6 @@ public class HTMLUnitDriverTest {
 	 */
 	@AfterTest(enabled=true)
 	public void testTearDown() {
-	   driver.close();
+		driver.close();
 	}
 }
