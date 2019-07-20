@@ -79,7 +79,7 @@ public class HF_Driver2 {
 				System.out.println("TD ready for execution : " + xlTD[k][0]);
 				for (int i=1; i<xRows_TC ; i++){  // test case sheet
 					if (xlTC[i][2].equals("Y")){
-						xlTS = readXL(xlPath, "Test Steps");
+						//xlTS = readXL(xlPath, "Test Steps");
 						System.out.println("TC ready for execution : " + xlTC[i][0]);
 						vTC_Res = "Pass"; // Assume to begin that TC is a pass
 						int stepNum = 0;
@@ -120,8 +120,8 @@ public class HF_Driver2 {
 								xlTS[j][4] = vIP1;
 								xlTS[j][5] = vIP2;
 								xlTS[j][6] = vTS_Res;
-								writeXL(xlRes_TS+xlTD[k][0]+".xls", "TestSteps", xlTS);
-								writeXL(xlRes_TC+xlTD[k][0]+".xls", "TestCases", xlTC);
+								//writeXL(xlRes_TS+xlTD[k][0]+".xls", "TestSteps", xlTS);
+								//writeXL(xlRes_TC+xlTD[k][0]+".xls", "TestCases", xlTC);
 							}
 						}	
 						xlTC[i][3] = vTC_Res;
@@ -130,8 +130,9 @@ public class HF_Driver2 {
 					}
 				}
 				// Update the results of the KDF for each set of Test Data
-				//writeXL(xlRes_TS+xlTD[k][0]+".xls", "TestSteps", xlTS);
-				//writeXL(xlRes_TC+xlTD[k][0]+".xls", "TestCases", xlTC);
+				writeXL(xlRes_TS+xlTD[k][0]+".xls", "TestSteps", xlTS);
+				writeXL(xlRes_TC+xlTD[k][0]+".xls", "TestCases", xlTC);
+				xlTS = readXL(xlPath, "Test Steps");
 			} else {
 				System.out.println("TD row not ready for execution : " + xlTD[k][0]);
 			}
