@@ -27,7 +27,7 @@ import org.testng.annotations.Test;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-@Test(groups= {"run-all-methods"})
+//@Test(groups= {"run-all-methods"})
 public class HF_Driver2 {
 	// Global Variables
 	String xlPath, xlRes_TS, xlRes_TC, xlRes_TD;
@@ -38,17 +38,15 @@ public class HF_Driver2 {
 	String vTS_Res, vTC_Res, vTD_Res;
 	
 	
-	@BeforeTest // Run this before any @Test
+	@BeforeTest(groups= {"run-all-methods"})
 	public void myBefore() throws Exception{
 		// driver = new FirefoxDriver();
 	    // driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
 	    
-		xlPath = "D:\\Eclipse_Workspace\\SeleniumPractice\\src\\test\\resources\\Test_HF_Selenium.xls";
-	    //xlPath = "C:\\SLT_Oct_2015\\HF1.xls";
-	    //xlRes_TS= "C:\\SLT_Oct_2015\\HF1_TS_Res";
-	    //xlRes_TC= "C:\\SLT_Oct_2015\\HF1_TC_Res";
-	    xlRes_TS= "D:\\Eclipse_Workspace\\SeleniumPractice\\src\\test\\resources\\Results\\HF1_TS_Res";
-	    xlRes_TC= "D:\\Eclipse_Workspace\\SeleniumPractice\\src\\test\\resources\\Results\\HF1_TC_Res";
+
+		xlPath = "C:\\Users\\user\\gitproject\\SeleniumPractice\\src\\test\\resources\\Test_HF_Selenium.xls";
+	    xlRes_TS= "C:\\Users\\user\\gitproject\\SeleniumPractice\\src\\test\\resources\\Results\\HF1_TS_Res";
+	    xlRes_TC= "C:\\Users\\user\\gitproject\\SeleniumPractice\\src\\test\\resources\\Results\\HF1_TC_Res";
 	    
 	   // xlRes_TD= "C:\\SLT_Oct_2015\\HF1_TD_Res.xls";
 		xlTC = readXL(xlPath, "Test Cases");
@@ -71,26 +69,17 @@ public class HF_Driver2 {
 		System.out.println("TD Cols are " + xCols_TD);
 	}    
 	
-	@Test
+	
+	@Test(groups= {"run-all-methods"})
 	public void mainTest() throws Exception{
 		
-		/*
-		 * 1. Read the TD xl info
-		 * 2. Go to each row in TD xl n see if Execute is Y
-		 * 3. If Y then run the KDF
-		 */
-		/*
-		 * 1. Read the Excel sheet ... TC / TS
-		 * 2. Go to each row in the TC sheet, see if it is ready to execute
-		 * 3. Go to each row in TS sheet, and see if it is corresponding to that Test Case
-		 * 4. Get the KW, IP1, IP2 for each step
-		 * 5. Call the corresponding function
-		 */
+		
 		for (int k=1; k<xRows_TD; k++){  // test data
 			if (xlTD[k][1].equals("Y")) {
 				System.out.println("TD ready for execution : " + xlTD[k][0]);
 				for (int i=1; i<xRows_TC ; i++){  // test case sheet
 					if (xlTC[i][2].equals("Y")){
+						xlTS = readXL(xlPath, "Test Steps");
 						System.out.println("TC ready for execution : " + xlTC[i][0]);
 						vTC_Res = "Pass"; // Assume to begin that TC is a pass
 						int stepNum = 0;
@@ -104,6 +93,8 @@ public class HF_Driver2 {
 		System.out.println("~~~~~~TD to pick data from : " + xlTD[k][0]);
 								vIP1 = getTestDataValue(vIP1, k);
 								vIP2 = getTestDataValue(vIP2, k);
+								System.out.println(">>>vIP1>>>"+ vIP1);
+								System.out.println(">>>vIP2>>>"+ vIP2);
 								vTS_Res = "Pass"; // Assume to begin that TS is a pass
 								System.out.println("KW: " + vKW);
 								System.out.println("IP1: " + vIP1);
@@ -129,6 +120,8 @@ public class HF_Driver2 {
 								xlTS[j][4] = vIP1;
 								xlTS[j][5] = vIP2;
 								xlTS[j][6] = vTS_Res;
+								writeXL(xlRes_TS+xlTD[k][0]+".xls", "TestSteps", xlTS);
+								writeXL(xlRes_TC+xlTD[k][0]+".xls", "TestCases", xlTC);
 							}
 						}	
 						xlTC[i][3] = vTC_Res;
@@ -137,8 +130,8 @@ public class HF_Driver2 {
 					}
 				}
 				// Update the results of the KDF for each set of Test Data
-				writeXL(xlRes_TS+xlTD[k][0]+".xls", "TestSteps", xlTS);
-				writeXL(xlRes_TC+xlTD[k][0]+".xls", "TestCases", xlTC);
+				//writeXL(xlRes_TS+xlTD[k][0]+".xls", "TestSteps", xlTS);
+				//writeXL(xlRes_TC+xlTD[k][0]+".xls", "TestCases", xlTC);
 			} else {
 				System.out.println("TD row not ready for execution : " + xlTD[k][0]);
 			}
@@ -336,8 +329,8 @@ public class HF_Driver2 {
 							value = cellToString(cell);
 						}
 						xData[i][j] = value;      
-						System.out.print(value);
-						System.out.print("----");
+						//System.out.print(value);
+						//System.out.print("----");
 						}        
 					System.out.println("");
 					}    
