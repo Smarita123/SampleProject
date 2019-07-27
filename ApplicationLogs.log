@@ -1,0 +1,109 @@
+2019-07-27 17:56:06[main] DEBUG RequestAddCookies:123  - CookieSpec selected: default
+2019-07-27 17:56:06[main] DEBUG RequestAuthCache:77  - Auth cache not set in the context
+2019-07-27 17:56:06[main] DEBUG PoolingHttpClientConnectionManager:266  - Connection request: [route: {s}->https://chromedriver.storage.googleapis.com:443][total kept alive: 0; route allocated: 0 of 2; total allocated: 0 of 20]
+2019-07-27 17:56:06[main] DEBUG PoolingHttpClientConnectionManager:310  - Connection leased: [id: 0][route: {s}->https://chromedriver.storage.googleapis.com:443][total kept alive: 0; route allocated: 1 of 2; total allocated: 1 of 20]
+2019-07-27 17:56:06[main] DEBUG MainClientExec:234  - Opening connection {s}->https://chromedriver.storage.googleapis.com:443
+2019-07-27 17:56:06[main] DEBUG DefaultHttpClientConnectionOperator:139  - Connecting to chromedriver.storage.googleapis.com/216.58.199.144:443
+2019-07-27 17:56:06[main] DEBUG SSLConnectionSocketFactory:366  - Connecting socket to chromedriver.storage.googleapis.com/216.58.199.144:443 with timeout 0
+2019-07-27 17:56:06[main] DEBUG SSLConnectionSocketFactory:430  - Enabled protocols: [TLSv1, TLSv1.1, TLSv1.2]
+2019-07-27 17:56:06[main] DEBUG SSLConnectionSocketFactory:431  - Enabled cipher suites:[TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256, TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256, TLS_RSA_WITH_AES_128_CBC_SHA256, TLS_ECDH_ECDSA_WITH_AES_128_CBC_SHA256, TLS_ECDH_RSA_WITH_AES_128_CBC_SHA256, TLS_DHE_RSA_WITH_AES_128_CBC_SHA256, TLS_DHE_DSS_WITH_AES_128_CBC_SHA256, TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA, TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA, TLS_RSA_WITH_AES_128_CBC_SHA, TLS_ECDH_ECDSA_WITH_AES_128_CBC_SHA, TLS_ECDH_RSA_WITH_AES_128_CBC_SHA, TLS_DHE_RSA_WITH_AES_128_CBC_SHA, TLS_DHE_DSS_WITH_AES_128_CBC_SHA, TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256, TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256, TLS_RSA_WITH_AES_128_GCM_SHA256, TLS_ECDH_ECDSA_WITH_AES_128_GCM_SHA256, TLS_ECDH_RSA_WITH_AES_128_GCM_SHA256, TLS_DHE_RSA_WITH_AES_128_GCM_SHA256, TLS_DHE_DSS_WITH_AES_128_GCM_SHA256, TLS_EMPTY_RENEGOTIATION_INFO_SCSV]
+2019-07-27 17:56:06[main] DEBUG SSLConnectionSocketFactory:435  - Starting handshake
+2019-07-27 17:56:06[main] DEBUG SSLConnectionSocketFactory:465  - Secure session established
+2019-07-27 17:56:06[main] DEBUG SSLConnectionSocketFactory:466  -  negotiated protocol: TLSv1.2
+2019-07-27 17:56:06[main] DEBUG SSLConnectionSocketFactory:467  -  negotiated cipher suite: TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+2019-07-27 17:56:06[main] DEBUG SSLConnectionSocketFactory:475  -  peer principal: CN=*.storage.googleapis.com, O=Google LLC, L=Mountain View, ST=California, C=US
+2019-07-27 17:56:06[main] DEBUG SSLConnectionSocketFactory:484  -  peer alternative names: [*.storage.googleapis.com, *.appspot.com.storage.googleapis.com, *.commondatastorage.googleapis.com, *.content-storage-download.googleapis.com, *.content-storage-upload.googleapis.com, *.content-storage.googleapis.com, *.googleapis.com, *.storage-download.googleapis.com, *.storage-upload.googleapis.com, *.storage.select.googleapis.com, commondatastorage.googleapis.com, storage.googleapis.com, storage.select.googleapis.com, unfiltered.news]
+2019-07-27 17:56:06[main] DEBUG SSLConnectionSocketFactory:488  -  issuer principal: CN=Google Internet Authority G3, O=Google Trust Services, C=US
+2019-07-27 17:56:06[main] DEBUG DefaultHttpClientConnectionOperator:146  - Connection established 192.168.0.100:61770<->216.58.199.144:443
+2019-07-27 17:56:06[main] DEBUG MainClientExec:255  - Executing request OPTIONS / HTTP/1.1
+2019-07-27 17:56:06[main] DEBUG MainClientExec:260  - Target auth state: UNCHALLENGED
+2019-07-27 17:56:06[main] DEBUG MainClientExec:266  - Proxy auth state: UNCHALLENGED
+2019-07-27 17:56:06[main] DEBUG headers:133  - http-outgoing-0 >> OPTIONS / HTTP/1.1
+2019-07-27 17:56:06[main] DEBUG headers:136  - http-outgoing-0 >> Host: chromedriver.storage.googleapis.com
+2019-07-27 17:56:06[main] DEBUG headers:136  - http-outgoing-0 >> Connection: Keep-Alive
+2019-07-27 17:56:06[main] DEBUG headers:136  - http-outgoing-0 >> User-Agent: Apache-HttpClient/4.5.8 (Java/1.8.0_121)
+2019-07-27 17:56:06[main] DEBUG headers:136  - http-outgoing-0 >> Accept-Encoding: gzip,deflate
+2019-07-27 17:56:06[main] DEBUG wire:73  - http-outgoing-0 >> "OPTIONS / HTTP/1.1[\r][\n]"
+2019-07-27 17:56:06[main] DEBUG wire:73  - http-outgoing-0 >> "Host: chromedriver.storage.googleapis.com[\r][\n]"
+2019-07-27 17:56:06[main] DEBUG wire:73  - http-outgoing-0 >> "Connection: Keep-Alive[\r][\n]"
+2019-07-27 17:56:06[main] DEBUG wire:73  - http-outgoing-0 >> "User-Agent: Apache-HttpClient/4.5.8 (Java/1.8.0_121)[\r][\n]"
+2019-07-27 17:56:06[main] DEBUG wire:73  - http-outgoing-0 >> "Accept-Encoding: gzip,deflate[\r][\n]"
+2019-07-27 17:56:06[main] DEBUG wire:73  - http-outgoing-0 >> "[\r][\n]"
+2019-07-27 17:56:06[main] DEBUG wire:73  - http-outgoing-0 << "HTTP/1.1 200 OK[\r][\n]"
+2019-07-27 17:56:06[main] DEBUG wire:73  - http-outgoing-0 << "X-GUploader-UploadID: AEnB2Up7QP5UG2Hcs-c5DGT9rpZEGmQnl2HTMZrInLcNA2CN0reF-levlC78eaxvo762fa0Oq8TCl4bJ-PayepNRLunpMasHhA[\r][\n]"
+2019-07-27 17:56:06[main] DEBUG wire:73  - http-outgoing-0 << "Date: Sat, 27 Jul 2019 12:26:07 GMT[\r][\n]"
+2019-07-27 17:56:06[main] DEBUG wire:73  - http-outgoing-0 << "Expires: Sat, 27 Jul 2019 12:26:07 GMT[\r][\n]"
+2019-07-27 17:56:06[main] DEBUG wire:73  - http-outgoing-0 << "Cache-Control: private, max-age=0[\r][\n]"
+2019-07-27 17:56:06[main] DEBUG wire:73  - http-outgoing-0 << "Content-Length: 0[\r][\n]"
+2019-07-27 17:56:06[main] DEBUG wire:73  - http-outgoing-0 << "Server: UploadServer[\r][\n]"
+2019-07-27 17:56:06[main] DEBUG wire:73  - http-outgoing-0 << "Content-Type: text/html; charset=UTF-8[\r][\n]"
+2019-07-27 17:56:06[main] DEBUG wire:73  - http-outgoing-0 << "Alt-Svc: quic=":443"; ma=2592000; v="46,43,39"[\r][\n]"
+2019-07-27 17:56:06[main] DEBUG wire:73  - http-outgoing-0 << "[\r][\n]"
+2019-07-27 17:56:06[main] DEBUG headers:122  - http-outgoing-0 << HTTP/1.1 200 OK
+2019-07-27 17:56:06[main] DEBUG headers:125  - http-outgoing-0 << X-GUploader-UploadID: AEnB2Up7QP5UG2Hcs-c5DGT9rpZEGmQnl2HTMZrInLcNA2CN0reF-levlC78eaxvo762fa0Oq8TCl4bJ-PayepNRLunpMasHhA
+2019-07-27 17:56:06[main] DEBUG headers:125  - http-outgoing-0 << Date: Sat, 27 Jul 2019 12:26:07 GMT
+2019-07-27 17:56:06[main] DEBUG headers:125  - http-outgoing-0 << Expires: Sat, 27 Jul 2019 12:26:07 GMT
+2019-07-27 17:56:06[main] DEBUG headers:125  - http-outgoing-0 << Cache-Control: private, max-age=0
+2019-07-27 17:56:06[main] DEBUG headers:125  - http-outgoing-0 << Content-Length: 0
+2019-07-27 17:56:06[main] DEBUG headers:125  - http-outgoing-0 << Server: UploadServer
+2019-07-27 17:56:06[main] DEBUG headers:125  - http-outgoing-0 << Content-Type: text/html; charset=UTF-8
+2019-07-27 17:56:06[main] DEBUG headers:125  - http-outgoing-0 << Alt-Svc: quic=":443"; ma=2592000; v="46,43,39"
+2019-07-27 17:56:06[main] DEBUG MainClientExec:285  - Connection can be kept alive indefinitely
+2019-07-27 17:56:06[main] DEBUG PoolingHttpClientConnectionManager:342  - Connection [id: 0][route: {s}->https://chromedriver.storage.googleapis.com:443] can be kept alive indefinitely
+2019-07-27 17:56:06[main] DEBUG DefaultManagedHttpClientConnection:88  - http-outgoing-0: set socket timeout to 0
+2019-07-27 17:56:06[main] DEBUG PoolingHttpClientConnectionManager:349  - Connection released: [id: 0][route: {s}->https://chromedriver.storage.googleapis.com:443][total kept alive: 1; route allocated: 1 of 2; total allocated: 1 of 20]
+2019-07-27 17:57:45[main] DEBUG RequestAddCookies:123  - CookieSpec selected: default
+2019-07-27 17:57:45[main] DEBUG RequestAuthCache:77  - Auth cache not set in the context
+2019-07-27 17:57:45[main] DEBUG PoolingHttpClientConnectionManager:266  - Connection request: [route: {s}->https://chromedriver.storage.googleapis.com:443][total kept alive: 0; route allocated: 0 of 2; total allocated: 0 of 20]
+2019-07-27 17:57:45[main] DEBUG PoolingHttpClientConnectionManager:310  - Connection leased: [id: 1][route: {s}->https://chromedriver.storage.googleapis.com:443][total kept alive: 0; route allocated: 1 of 2; total allocated: 1 of 20]
+2019-07-27 17:57:45[main] DEBUG MainClientExec:234  - Opening connection {s}->https://chromedriver.storage.googleapis.com:443
+2019-07-27 17:57:45[main] DEBUG DefaultHttpClientConnectionOperator:139  - Connecting to chromedriver.storage.googleapis.com/216.58.199.144:443
+2019-07-27 17:57:45[main] DEBUG SSLConnectionSocketFactory:366  - Connecting socket to chromedriver.storage.googleapis.com/216.58.199.144:443 with timeout 0
+2019-07-27 17:57:45[main] DEBUG SSLConnectionSocketFactory:430  - Enabled protocols: [TLSv1, TLSv1.1, TLSv1.2]
+2019-07-27 17:57:45[main] DEBUG SSLConnectionSocketFactory:431  - Enabled cipher suites:[TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256, TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256, TLS_RSA_WITH_AES_128_CBC_SHA256, TLS_ECDH_ECDSA_WITH_AES_128_CBC_SHA256, TLS_ECDH_RSA_WITH_AES_128_CBC_SHA256, TLS_DHE_RSA_WITH_AES_128_CBC_SHA256, TLS_DHE_DSS_WITH_AES_128_CBC_SHA256, TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA, TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA, TLS_RSA_WITH_AES_128_CBC_SHA, TLS_ECDH_ECDSA_WITH_AES_128_CBC_SHA, TLS_ECDH_RSA_WITH_AES_128_CBC_SHA, TLS_DHE_RSA_WITH_AES_128_CBC_SHA, TLS_DHE_DSS_WITH_AES_128_CBC_SHA, TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256, TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256, TLS_RSA_WITH_AES_128_GCM_SHA256, TLS_ECDH_ECDSA_WITH_AES_128_GCM_SHA256, TLS_ECDH_RSA_WITH_AES_128_GCM_SHA256, TLS_DHE_RSA_WITH_AES_128_GCM_SHA256, TLS_DHE_DSS_WITH_AES_128_GCM_SHA256, TLS_EMPTY_RENEGOTIATION_INFO_SCSV]
+2019-07-27 17:57:45[main] DEBUG SSLConnectionSocketFactory:435  - Starting handshake
+2019-07-27 17:57:45[main] DEBUG SSLConnectionSocketFactory:465  - Secure session established
+2019-07-27 17:57:45[main] DEBUG SSLConnectionSocketFactory:466  -  negotiated protocol: TLSv1.2
+2019-07-27 17:57:45[main] DEBUG SSLConnectionSocketFactory:467  -  negotiated cipher suite: TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+2019-07-27 17:57:45[main] DEBUG SSLConnectionSocketFactory:475  -  peer principal: CN=*.storage.googleapis.com, O=Google LLC, L=Mountain View, ST=California, C=US
+2019-07-27 17:57:45[main] DEBUG SSLConnectionSocketFactory:484  -  peer alternative names: [*.storage.googleapis.com, *.appspot.com.storage.googleapis.com, *.commondatastorage.googleapis.com, *.content-storage-download.googleapis.com, *.content-storage-upload.googleapis.com, *.content-storage.googleapis.com, *.googleapis.com, *.storage-download.googleapis.com, *.storage-upload.googleapis.com, *.storage.select.googleapis.com, commondatastorage.googleapis.com, storage.googleapis.com, storage.select.googleapis.com, unfiltered.news]
+2019-07-27 17:57:45[main] DEBUG SSLConnectionSocketFactory:488  -  issuer principal: CN=Google Internet Authority G3, O=Google Trust Services, C=US
+2019-07-27 17:57:45[main] DEBUG DefaultHttpClientConnectionOperator:146  - Connection established 192.168.0.100:61939<->216.58.199.144:443
+2019-07-27 17:57:45[main] DEBUG MainClientExec:255  - Executing request OPTIONS / HTTP/1.1
+2019-07-27 17:57:45[main] DEBUG MainClientExec:260  - Target auth state: UNCHALLENGED
+2019-07-27 17:57:45[main] DEBUG MainClientExec:266  - Proxy auth state: UNCHALLENGED
+2019-07-27 17:57:45[main] DEBUG headers:133  - http-outgoing-1 >> OPTIONS / HTTP/1.1
+2019-07-27 17:57:45[main] DEBUG headers:136  - http-outgoing-1 >> Host: chromedriver.storage.googleapis.com
+2019-07-27 17:57:45[main] DEBUG headers:136  - http-outgoing-1 >> Connection: Keep-Alive
+2019-07-27 17:57:45[main] DEBUG headers:136  - http-outgoing-1 >> User-Agent: Apache-HttpClient/4.5.8 (Java/1.8.0_121)
+2019-07-27 17:57:45[main] DEBUG headers:136  - http-outgoing-1 >> Accept-Encoding: gzip,deflate
+2019-07-27 17:57:45[main] DEBUG wire:73  - http-outgoing-1 >> "OPTIONS / HTTP/1.1[\r][\n]"
+2019-07-27 17:57:45[main] DEBUG wire:73  - http-outgoing-1 >> "Host: chromedriver.storage.googleapis.com[\r][\n]"
+2019-07-27 17:57:45[main] DEBUG wire:73  - http-outgoing-1 >> "Connection: Keep-Alive[\r][\n]"
+2019-07-27 17:57:45[main] DEBUG wire:73  - http-outgoing-1 >> "User-Agent: Apache-HttpClient/4.5.8 (Java/1.8.0_121)[\r][\n]"
+2019-07-27 17:57:45[main] DEBUG wire:73  - http-outgoing-1 >> "Accept-Encoding: gzip,deflate[\r][\n]"
+2019-07-27 17:57:45[main] DEBUG wire:73  - http-outgoing-1 >> "[\r][\n]"
+2019-07-27 17:57:45[main] DEBUG wire:73  - http-outgoing-1 << "HTTP/1.1 200 OK[\r][\n]"
+2019-07-27 17:57:45[main] DEBUG wire:73  - http-outgoing-1 << "X-GUploader-UploadID: AEnB2UpDmJxOVCL8U_KMlthW15IxaTWA-oJjnDHDz8XCoU0rTjcVoMa_S3j5xhJit59JMyHbbjYyIWcPItdrKKcchkY7ZfyOeA[\r][\n]"
+2019-07-27 17:57:45[main] DEBUG wire:73  - http-outgoing-1 << "Date: Sat, 27 Jul 2019 12:27:46 GMT[\r][\n]"
+2019-07-27 17:57:45[main] DEBUG wire:73  - http-outgoing-1 << "Expires: Sat, 27 Jul 2019 12:27:46 GMT[\r][\n]"
+2019-07-27 17:57:45[main] DEBUG wire:73  - http-outgoing-1 << "Cache-Control: private, max-age=0[\r][\n]"
+2019-07-27 17:57:45[main] DEBUG wire:73  - http-outgoing-1 << "Content-Length: 0[\r][\n]"
+2019-07-27 17:57:45[main] DEBUG wire:73  - http-outgoing-1 << "Server: UploadServer[\r][\n]"
+2019-07-27 17:57:45[main] DEBUG wire:73  - http-outgoing-1 << "Content-Type: text/html; charset=UTF-8[\r][\n]"
+2019-07-27 17:57:45[main] DEBUG wire:73  - http-outgoing-1 << "Alt-Svc: quic=":443"; ma=2592000; v="46,43,39"[\r][\n]"
+2019-07-27 17:57:45[main] DEBUG wire:73  - http-outgoing-1 << "[\r][\n]"
+2019-07-27 17:57:45[main] DEBUG headers:122  - http-outgoing-1 << HTTP/1.1 200 OK
+2019-07-27 17:57:45[main] DEBUG headers:125  - http-outgoing-1 << X-GUploader-UploadID: AEnB2UpDmJxOVCL8U_KMlthW15IxaTWA-oJjnDHDz8XCoU0rTjcVoMa_S3j5xhJit59JMyHbbjYyIWcPItdrKKcchkY7ZfyOeA
+2019-07-27 17:57:45[main] DEBUG headers:125  - http-outgoing-1 << Date: Sat, 27 Jul 2019 12:27:46 GMT
+2019-07-27 17:57:45[main] DEBUG headers:125  - http-outgoing-1 << Expires: Sat, 27 Jul 2019 12:27:46 GMT
+2019-07-27 17:57:45[main] DEBUG headers:125  - http-outgoing-1 << Cache-Control: private, max-age=0
+2019-07-27 17:57:45[main] DEBUG headers:125  - http-outgoing-1 << Content-Length: 0
+2019-07-27 17:57:45[main] DEBUG headers:125  - http-outgoing-1 << Server: UploadServer
+2019-07-27 17:57:45[main] DEBUG headers:125  - http-outgoing-1 << Content-Type: text/html; charset=UTF-8
+2019-07-27 17:57:45[main] DEBUG headers:125  - http-outgoing-1 << Alt-Svc: quic=":443"; ma=2592000; v="46,43,39"
+2019-07-27 17:57:45[main] DEBUG MainClientExec:285  - Connection can be kept alive indefinitely
+2019-07-27 17:57:45[main] DEBUG PoolingHttpClientConnectionManager:342  - Connection [id: 1][route: {s}->https://chromedriver.storage.googleapis.com:443] can be kept alive indefinitely
+2019-07-27 17:57:45[main] DEBUG DefaultManagedHttpClientConnection:88  - http-outgoing-1: set socket timeout to 0
+2019-07-27 17:57:45[main] DEBUG PoolingHttpClientConnectionManager:349  - Connection released: [id: 1][route: {s}->https://chromedriver.storage.googleapis.com:443][total kept alive: 1; route allocated: 1 of 2; total allocated: 1 of 20]
+2019-07-27 17:59:56[main] INFO  HF_Driver2:149  - Total Time taken****** = 231.86 sec

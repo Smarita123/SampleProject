@@ -4,9 +4,11 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.sql.Time;
 import java.util.concurrent.TimeUnit;
-
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
@@ -21,6 +23,7 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.slf4j.Logger;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
@@ -29,7 +32,9 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 
 //@Test(groups= {"run-all-methods"})
 public class HF_Driver2 {
-	// Global Variables
+	 final static Log logger = LogFactory.getLog(HF_Driver2.class);
+
+	// Global Variables;
 	String xlPath, xlRes_TS, xlRes_TC, xlRes_TD;
 	int xRows_TC, xRows_TS, xCols_TC, xCols_TS, xRows_TD, xCols_TD;
 	String[][] xlTC, xlTS, xlTD;// 2D Array of Test Data, Test case, Test steps
@@ -44,9 +49,9 @@ public class HF_Driver2 {
 	    // driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
 	    
 
-		xlPath = "C:\\Users\\user\\gitproject\\SeleniumPractice\\src\\test\\resources\\Test_HF_Selenium.xls";
-	    xlRes_TS= "C:\\Users\\user\\gitproject\\SeleniumPractice\\src\\test\\resources\\Results\\HF1_TS_Res";
-	    xlRes_TC= "C:\\Users\\user\\gitproject\\SeleniumPractice\\src\\test\\resources\\Results\\HF1_TC_Res";
+		xlPath = "D:\\Eclipse_Workspace\\SeleniumPractice\\src\\test\\resources\\Test_HF_Selenium.xls";
+	    xlRes_TS= "D:\\Eclipse_Workspace\\SeleniumPractice\\src\\test\\resources\\Results\\HF1_TS_Res";
+	    xlRes_TC= "D:\\Eclipse_Workspace\\SeleniumPractice\\src\\test\\resources\\Results\\HF1_TC_Res";
 	    
 	   // xlRes_TD= "C:\\SLT_Oct_2015\\HF1_TD_Res.xls";
 		xlTC = readXL(xlPath, "Test Cases");
@@ -73,7 +78,9 @@ public class HF_Driver2 {
 	@Test(groups= {"run-all-methods"})
 	public void mainTest() throws Exception{
 		
-		
+		//PropertiesConfigurator is used to configure logger from properties file
+		//PropertyConfigurator.configure("D:\\Eclipse_Workspace\\SeleniumPractice\\src\\log4j.properties");
+		double starttime= System.currentTimeMillis();
 		for (int k=1; k<xRows_TD; k++){  // test data
 			if (xlTD[k][1].equals("Y")) {
 				System.out.println("TD ready for execution : " + xlTD[k][0]);
@@ -84,10 +91,9 @@ public class HF_Driver2 {
 						vTC_Res = "Pass"; // Assume to begin that TC is a pass
 						int stepNum = 0;
 						for (int j=1; j<xRows_TS; j++){	// test steps sheet
-							if (xlTC[i][0].equals(xlTS[j][0])){
+							if (xlTC[i][0].equals(xlTS[j][0])){	
 								stepNum++;
 								vKW = xlTS[j][3];// keyword  Enteremail		
-
 								vIP1 = xlTS[j][4];  // Ip1/ xpath of feild  //*[@id='Email']
 								vIP2 = xlTS[j][5];// IP2 data for that feild   vEmailid
 		System.out.println("~~~~~~TD to pick data from : " + xlTD[k][0]);
@@ -107,21 +113,21 @@ public class HF_Driver2 {
 										vTS_Res = "Verification Failed";
 										vTC_Res = "Fail";
 										xlTS[j][7] = "Look at the screenshot.";
-										takeScreenshot("C:\\SLT_Oct_2015\\"+xlTD[k][0]+"_"+xlTC[i][0]+"_"+stepNum+".jpg");
+										takeScreenshot("D:\\Eclipse_Workspace\\SeleniumPractice\\src\\test\\resources\\Screenshots"+xlTD[k][0]+"_"+xlTC[i][0]+"_"+stepNum+".jpg");
 									}
 								} catch (Exception myError){
 									System.out.println("Error : " + myError);
 									vTS_Res = "Fail";
 									vTC_Res = "Fail";
 									xlTS[j][7] = "Error : " + myError;
-									takeScreenshot("C:\\SLT_Oct_2015\\"+xlTD[k][0]+"_"+xlTC[i][0]+"_"+stepNum+".jpg");
+									takeScreenshot("D:\\Eclipse_Workspace\\SeleniumPractice\\src\\test\\resources\\Screenshots"+xlTD[k][0]+"_"+xlTC[i][0]+"_"+stepNum+".jpg");
 								}
 								// Update the actual test data value before writing results
 								xlTS[j][4] = vIP1;
 								xlTS[j][5] = vIP2;
 								xlTS[j][6] = vTS_Res;
 								//writeXL(xlRes_TS+xlTD[k][0]+".xls", "TestSteps", xlTS);
-								//writeXL(xlRes_TC+xlTD[k][0]+".xls", "TestCases", xlTC);
+								//writeXL(xlRes_TC+xlTD[k][0]+".xls", "TestCases", xlTC);							
 							}
 						}	
 						xlTC[i][3] = vTC_Res;
@@ -132,13 +138,14 @@ public class HF_Driver2 {
 				// Update the results of the KDF for each set of Test Data
 				writeXL(xlRes_TS+xlTD[k][0]+".xls", "TestSteps", xlTS);
 				writeXL(xlRes_TC+xlTD[k][0]+".xls", "TestCases", xlTC);
-				xlTS = readXL(xlPath, "Test Steps");
+				xlTS = readXL(xlPath, "Test Steps");// readXL will reset the xlTS variables (IP1 and IP2 values of this iteration), so it reads fresh values from Excel
 			} else {
 				System.out.println("TD row not ready for execution : " + xlTD[k][0]);
 			}
 		}
-		
-		
+		double endtime= System.currentTimeMillis();
+		double time = (endtime-starttime)/1000;
+		//logger.info("Total Time taken {} in sec" ,time);		
 	}
 	
 	@AfterTest
