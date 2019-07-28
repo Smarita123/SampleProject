@@ -36,6 +36,7 @@ public class CssSelectorUserMgmt {
 	@Test(groups= {"run-all-methods"})
 	public void register() {
 		//Register
+		Assert.assertEquals(driver.findElement(By.cssSelector("input#name")).getAttribute("value"), "Default Value");;
 		driver.findElement(By.cssSelector("input#name")).clear();
 		driver.findElement(By.cssSelector("button[onclick='fillName()']")).click();
 		driver.switchTo().alert().sendKeys("Lalatendu");
