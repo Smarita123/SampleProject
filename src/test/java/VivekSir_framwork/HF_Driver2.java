@@ -24,6 +24,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
@@ -32,7 +33,7 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 
 //@Test(groups= {"run-all-methods"})
 public class HF_Driver2 {
-	 final static Log logger = LogFactory.getLog(HF_Driver2.class);
+	 final static Logger logger = LoggerFactory.getLogger(HF_Driver2.class);
 
 	// Global Variables;
 	String xlPath, xlRes_TS, xlRes_TC, xlRes_TD;
@@ -48,10 +49,15 @@ public class HF_Driver2 {
 		// driver = new FirefoxDriver();
 	    // driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
 	    
+		//smarita's folder path
+		//xlPath = "D:\\Eclipse_Workspace\\SeleniumPractice\\src\\test\\resources\\Test_HF_Selenium.xls";
+	    //xlRes_TS= "D:\\Eclipse_Workspace\\SeleniumPractice\\src\\test\\resources\\Results\\HF1_TS_Res";
+	    //xlRes_TC= "D:\\Eclipse_Workspace\\SeleniumPractice\\src\\test\\resources\\Results\\HF1_TC_Res";
+	    
 
-		xlPath = "D:\\Eclipse_Workspace\\SeleniumPractice\\src\\test\\resources\\Test_HF_Selenium.xls";
-	    xlRes_TS= "D:\\Eclipse_Workspace\\SeleniumPractice\\src\\test\\resources\\Results\\HF1_TS_Res";
-	    xlRes_TC= "D:\\Eclipse_Workspace\\SeleniumPractice\\src\\test\\resources\\Results\\HF1_TC_Res";
+		xlPath = "C:\\Users\\user\\gitproject\\SeleniumPractice\\src\\test\\resources\\Test_HF_Selenium.xls";
+	    xlRes_TS= "C:\\Users\\user\\gitproject\\SeleniumPractice\\src\\test\\resources\\Results\\HF1_TS_Res";
+	    xlRes_TC= "C:\\Users\\user\\gitproject\\SeleniumPractice\\src\\test\\resources\\Results\\HF1_TC_Res";
 	    
 	   // xlRes_TD= "C:\\SLT_Oct_2015\\HF1_TD_Res.xls";
 		xlTC = readXL(xlPath, "Test Cases");
@@ -77,6 +83,8 @@ public class HF_Driver2 {
 	
 	@Test(groups= {"run-all-methods"})
 	public void mainTest() throws Exception{
+		
+		logger.info("xlTC rows -> {} and xlTS rows -> {} and xlTD rows ->{}",xRows_TC, xRows_TS ,xRows_TD );
 		
 		//PropertiesConfigurator is used to configure logger from properties file
 		//PropertyConfigurator.configure("D:\\Eclipse_Workspace\\SeleniumPractice\\src\\log4j.properties");
