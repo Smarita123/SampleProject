@@ -28,7 +28,7 @@ public class CssSelectorUserMgmt {
 	@Test(groups= {"run-all-methods"})
 	public void getVehicleThreeWheeler() {
 		//find second and third element of user list
-		WebElement secondElement = driver.findElement(By.cssSelector("ul#vehicle > li:nth-child(3)"));
+		WebElement secondElement = driver.findElement(By.cssSelector("ul#vehicle > li:nth-child(2)"));
 		WebElement thirdElement = driver.findElement(By.cssSelector("ul#vehicle > li:nth-child(3)"));
 		System.out.println("Second element = "+secondElement.getText());
 		System.out.println("Third element = "+thirdElement.getText());
