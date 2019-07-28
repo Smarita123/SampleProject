@@ -44,6 +44,7 @@
 			<run>
 				<include name="acceptanceTest" />
 				<include name="pre-test" />
+				<include name="after-test" />
 				<include name="run-all-methods" />
 			</run>
 		</groups>
@@ -51,8 +52,9 @@
 			<!-- <class name="selenium.tutorial.studies.ExtentReportTest" /> -->
 			<!-- <class name="selenium.tutorial.studies.GoogleUsingJavaScriptExecutor"/> -->
 			<!--<class name="selenium.tutorial.studies.HTMLUnitDriverTest" />-->
-			<class name="VivekSir_framwork.HF_Driver2" />
-			
+			<!--<class name="VivekSir_framwork.HF_Driver2" /> -->
+			<!--<class name="selenium.tutorial.studies.CssSelectorGoogleSearch" /> -->
+			<class name="selenium.tutorial.studies.CssSelectorUserMgmt" />
 			<groups>
 				<methods>
 					<exclude name="testHtmlUnitDriverAsNameLalatendu"></exclude>
