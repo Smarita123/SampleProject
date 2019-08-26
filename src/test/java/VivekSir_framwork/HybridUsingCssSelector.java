@@ -33,14 +33,14 @@ import org.testng.annotations.Test;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 @Listeners(selenium.tutorial.studies.reports.ExtentReporterNG.class)
-public class HF_Driver2 {
-	 final static Logger logger = LoggerFactory.getLogger(HF_Driver2.class);
+public class HybridUsingCssSelector {
+	 final static Logger logger = LoggerFactory.getLogger(HybridUsingCssSelector.class);
 
 	// Global Variables;
 	String xlPath, xlRes_TS, xlRes_TC, xlRes_TD;
 	int xRows_TC, xRows_TS, xCols_TC, xCols_TS, xRows_TD, xCols_TD;
 	String[][] xlTC, xlTS, xlTD;// 2D Array of Test Data, Test case, Test steps
-	String vKW, vIP1, vIP2;
+	String vKW, vIP1, vIP2, selector;
 	WebDriver driver;
 	String vTS_Res, vTC_Res, vTD_Res;
 	double starttime, endtime;
@@ -55,7 +55,7 @@ public class HF_Driver2 {
 		WebDriverManager.chromedriver().version("75.0").setup();
 		driver=new ChromeDriver();
 		//smarita's folder path
-		xlPath = ".\\src\\test\\resources\\Test_HF_Selenium.xls";
+		xlPath = ".\\src\\test\\resources\\HybridWithCSS.xls";
 	    xlRes_TS= ".\\src\\test\\resources\\Results\\HF1_TS_Res";
 	    xlRes_TC= ".\\src\\test\\resources\\Results\\HF1_TC_Res";
 	    
@@ -106,9 +106,10 @@ public class HF_Driver2 {
 						for (int j=1; j<xRows_TS; j++){	// test steps sheet
 							if (xlTC[i][0].equals(xlTS[j][0])){	
 								stepNum++;
-								vKW = xlTS[j][3];// keyword  Enteremail		
-								vIP1 = xlTS[j][4];  // Ip1/ xpath of feild  //*[@id='Email']
-								vIP2 = xlTS[j][5];// IP2 data for that feild   vEmailid
+								vKW = xlTS[j][3];// keyword  Enteremail
+								selector=xlTS[j][4]; //Selector
+								vIP1 = xlTS[j][5];  // Ip1/ xpath of feild  //*[@id='Email']
+								vIP2 = xlTS[j][6];// IP2 data for that feild   vEmailid
 								logger.info("~~~~~~TD to pick data from : " + xlTD[k][0]);
 								vIP1 = getTestDataValue(vIP1, k);
 								vIP2 = getTestDataValue(vIP2, k);
@@ -119,26 +120,26 @@ public class HF_Driver2 {
 								logger.info("IP1: " + vIP1);
 								logger.info("IP2: " + vIP2);
 								try {
-									executeKW(vKW, vIP1, vIP2);
+									executeKW(vKW, selector, vIP1, vIP2);
 									if (vTS_Res.equals("Pass")){
 										vTS_Res = "Pass";
 									} else {
 										vTS_Res = "Verification Failed";
 										vTC_Res = "Fail";
-										xlTS[j][7] = "Look at the screenshot.";
+										xlTS[j][8] = "Look at the screenshot.";
 										takeScreenshot("D:\\Eclipse_Workspace\\SeleniumPractice\\src\\test\\resources\\Screenshots"+xlTD[k][0]+"_"+xlTC[i][0]+"_"+stepNum+".jpg");
 									}
 								} catch (Exception myError){
 									logger.error("Error : " + myError);
 									vTS_Res = "Fail";
 									vTC_Res = "Fail";
-									xlTS[j][7] = "Error : " + myError;
+									xlTS[j][8] = "Error : " + myError;
 									takeScreenshot("D:\\Eclipse_Workspace\\SeleniumPractice\\src\\test\\resources\\Screenshots"+xlTD[k][0]+"_"+xlTC[i][0]+"_"+stepNum+".jpg");
 								}
 								// Update the actual test data value before writing results
-								xlTS[j][4] = vIP1;
-								xlTS[j][5] = vIP2;
-								xlTS[j][6] = vTS_Res;
+								xlTS[j][5] = vIP1;
+								xlTS[j][6] = vIP2;
+								xlTS[j][7] = vTS_Res;
 								//writeXL(xlRes_TS+xlTD[k][0]+".xls", "TestSteps", xlTS);
 								//writeXL(xlRes_TC+xlTD[k][0]+".xls", "TestCases", xlTC);							
 							}
@@ -195,7 +196,7 @@ public class HF_Driver2 {
 		// Now you can do whatever you need to do with it, for example copy somewhere
 		FileUtils.copyFile(scrFile, new File(fPath));
 	}
-	public void executeKW(String fKW, String fIP1, String fIP2){
+	public void executeKW(String fKW, String selector, String fIP1, String fIP2){
 		// Purpose: Executes the corr. function
 		// I/P: KW, IP1, IP2
 		// O/P:
@@ -205,22 +206,22 @@ public class HF_Driver2 {
 					goToUrl(fIP1);
 				break;
 			case "clearText":
-					clearText(fIP1);
+					clearText(selector, fIP1);
 					break;
 			case "typeText":
-					typeText(fIP1, fIP2);
+					typeText(selector, fIP1, fIP2);
 					break;
 			case "clickElement":
-					clickElement(fIP1);
+					clickElement(selector, fIP1);
 					break;
 			case "closeBrowser":
 					closeBrowser();
 					break;
 			case "verifyText":
-					vTS_Res = verifyText(fIP1, fIP2);
+					vTS_Res = verifyText(selector, fIP1, fIP2);
 					break;
 			case "verifyValue":
-					vTS_Res = verifyValue(fIP1, fIP2);
+					vTS_Res = verifyValue(selector, fIP1, fIP2);
 					break;
 			case "launchDriver":
 					launchDriver();
@@ -244,28 +245,40 @@ public class HF_Driver2 {
 			//driver = new FirefoxDriver();
 		    //driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
 		}
-		public void clearText(String fXPath){
+		public void clearText(String selector, String path){
 			// Purpose: Clears any text present in a editable text field
 			// I/P: xPath of the element that you want to clear
 			// O/P:
-			
-			driver.findElement(By.xpath(fXPath)).clear();
+			if ("xpath".equals(selector)){
+				driver.findElement(By.xpath(path)).clear();
+			}
+			else if ("CssSelector".equalsIgnoreCase(selector)){
+				driver.findElement(By.cssSelector(path)).clear();
+			}
 		}
 		
-		public void typeText(String fXPath, String fText){
+		public void typeText(String selector, String path, String fText){
 			// Purpose: Types text into an editable text field
 			// I/P: xPath of the element, and the text you need to enter
 			// O/P:
-			
-			driver.findElement(By.xpath(fXPath)).sendKeys(fText);
+			if ("xpath".equals(selector)){
+			driver.findElement(By.xpath(path)).sendKeys(fText);
+			}
+			else if ("CssSelector".equalsIgnoreCase(selector)){
+				driver.findElement(By.cssSelector(path)).sendKeys(fText);
+			}
 		}
 		
-		public void clickElement(String fXPath){
+		public void clickElement(String selector, String path){
 			// Purpose: Clicks on any element on webpage
 			// I/P: xPath of the element
 			// O/P:
-			
-			driver.findElement(By.xpath(fXPath)).click();
+			if ("xpath".equals(selector)){
+				driver.findElement(By.xpath(path)).click();
+			}
+			else if ("CssSelector".equalsIgnoreCase(selector)){
+					driver.findElement(By.cssSelector(path)).click();
+			}
 		}
 		
 		public void goToUrl(String fUrl){
@@ -292,15 +305,19 @@ public class HF_Driver2 {
 			driver.quit();
 		}
 		
-		public String verifyText(String fXP, String fText){
+		public String verifyText(String selector, String path, String fText){
 			// Purpose: Verifies a text in a specific element
 			// I/P: xPath, Text to verify
 			// O/P: pass or fail
 			
-			String fAppText;
+			String fAppText="";
 			
-			fAppText = driver.findElement(By.xpath(fXP)).getText();
-			
+			if ("xpath".equals(selector)){
+				fAppText = driver.findElement(By.xpath(path)).getText();
+			}
+			else if ("CssSelector".equalsIgnoreCase(selector)){
+					driver.findElement(By.cssSelector(path)).getText();
+			}
 			if (fAppText.equals(fText)){
 				return "Pass";
 			} else {
@@ -308,15 +325,19 @@ public class HF_Driver2 {
 			}
 		}
 		
-		public String verifyValue(String fXP, String fText){
+		public String verifyValue(String selector, String path, String fText){
 			// Purpose: Verifies a value in a specific element
 			// I/P: xPath, Text to verify
 			// O/P: pass or fail
 			
-			String fAppText;
+			String fAppText=""; //initialize
 			
-			fAppText = driver.findElement(By.xpath(fXP)).getAttribute("value");
-			
+			if ("xpath".equals(selector)){
+				fAppText = driver.findElement(By.xpath(path)).getAttribute("value");
+			}
+			else if ("CssSelector".equalsIgnoreCase(selector)){
+					driver.findElement(By.cssSelector(path)).getAttribute("value");
+			}
 			if (fAppText.equals(fText)){
 				return "Pass";
 			} else {
